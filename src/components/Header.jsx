@@ -12,7 +12,7 @@ const MyHeader = () => {
 
 	return (
 		<div>
-			<header className="bg-gray-950 p-4">
+			<header className="bg-gray-950 p-6">
 				<nav className="px-6 max-w-7xl mx-auto">
 					{/* felső sor */}
 					<div className="flex justify-between items-center">
