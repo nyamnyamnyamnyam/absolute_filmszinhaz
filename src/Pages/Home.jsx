@@ -23,7 +23,7 @@ const Home = () => {
 			) : trendings ? (
 				<MediaList
 					data={trendings}
-					type="movie"
+					type="trending"
 				/>
 				) : (
 				<Loading />

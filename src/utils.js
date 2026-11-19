@@ -28,6 +28,18 @@ export const getTvShows = async () => {
 	return response.data.results;
 };
 
-export const getVote = (vote) => {
-  return "⭐".repeat(Math.floor(vote / 2));
+export const getMedia = async (type, searchText) => {
+	const response = await api.get(`/search/${type}?query=${searchText}`);
+	return response.data.results;
 };
+
+const pageTitle = [
+	{type: 'trending', title: 'Popular this week'},
+	{type: 'movies', title: 'Movies'},
+	{type: 'tv', title: 'Tv Series'},
+	{type: 'search', title: 'Search Media'},
+]
+
+export const getTitle = (type) => {
+	return pageTitle.find(obj => obj.type === type)?.title ?? ''
+}

@@ -1,5 +1,6 @@
 import React from 'react'
-import { getVote, img_300 } from '../utils'
+import { img_300 } from '../utils'
+import { Rating } from './Rating'
 
 const MediaCard = ({ media }) => {
   return (
@@ -15,7 +16,7 @@ const MediaCard = ({ media }) => {
         <p className='flex justify-between'>
           <span>{media.media_type}</span>
           <span>{media.release_date || media.firs_air_date}</span>
-          <span>{getVote(media.vote_average)}</span>
+          <span>{<Rating vote={media.vote_average}/>}</span>
         </p>
       </div>
     </div>
