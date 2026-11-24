@@ -3,9 +3,9 @@ import React from "react";
 const SearchBar = ({searchText, setSearchText, handleSearch}) => {
   return (
     <div className="flex justify-center gap-4 text-gray-200 font-bold p-3">
-      <label class="input">
+      <label className="input">
         <svg
-          class="h-[1em] opacity-50"
+          className="h-[1em] opacity-50"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -20,7 +20,13 @@ const SearchBar = ({searchText, setSearchText, handleSearch}) => {
             <path d="m21 21-4.3-4.3"></path>
           </g>
         </svg>
-        <input type="search" required placeholder="Search" value={searchText} onChange={(e) => setSearchText(e.target.value.trim())}/>
+        <input
+          type="search"
+          required
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
       </label>
       <button className="btn btn-primary" onClick={handleSearch}>search</button>
     </div>

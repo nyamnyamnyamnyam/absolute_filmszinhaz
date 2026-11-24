@@ -1,18 +1,15 @@
-import React from "react";
-
 export const Rating = ({ vote }) => {
+  const rating = Math.round((Number(vote) || 0) / 2);
+
   return (
-    <div>
-      <div className="rating">
-        {[1, 2, 3, 4, 5].map((nr) => (
-          <div
-            key={nr}
-            className="mask mask-star bg-amber-600"
-            aria-label={`${nr} star`}
-            aria-current={nr == Math.round(vote / 2) ? "true" : "false"}
-          ></div>
-        ))}
-      </div>
-    </div>
+    <span className="inline-flex">
+      {[1, 2, 3, 4, 5].map((nr) => (
+        <span
+          key={nr}
+          className={`mask mask-star h-4 w-4 ${nr <= rating ? "bg-amber-500" : "bg-gray-400"}`}
+          aria-label={`${nr} star`}
+        />
+      ))}
+    </span>
   );
 };
