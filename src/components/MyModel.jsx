@@ -1,12 +1,14 @@
 import React from "react";
-import { getTrailer, img_500 } from "../utils";
+import { GetCreadits, getTrailer, img_500 } from "../utils";
 import { FaYoutube } from "react-icons/fa";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Carousel } from "./Carousel";
 
 const MyModel = ({ isOpen, setIsOpen, media }) => {
   const [trailer, setTrailer] = useState(null);
   const mediaType = media.media_type || (media.title ? "movie" : "tv")
+  const [credits, setCredits] = useState(null)
 
   useEffect(() => {
     if (!isOpen || !media?.id) return
@@ -15,44 +17,47 @@ const MyModel = ({ isOpen, setIsOpen, media }) => {
     getTrailer(mediaType, media.id)
       .then(setTrailer)
       .catch(() => setTrailer([]))
+    GetCreadits(mediaType, media.id)
+      .then(setCredits)
+      .catch(() => setCredits([]))
   }, [isOpen, media?.id, mediaType])
 
- /* const getytTrailer = () => {
-    if(trailer && trailer.lenght > 0){
-        const trailerYoutube = trailer.find((obj) => obj.site == "Youtube")
-        return trailerYoutube ? trailerYoutube :  null
-    }
-  }
-*/
   const trailerItem = trailer?.find((item) => item.site === "YouTube") ?? trailer?.[0]
-    
+  
 
   return (
     <div>
       <dialog className={`modal ${isOpen ? "modal-open" : ""}`}>
-        <div className="modal-box text-gray-100 flex flex-col items-center max-w-200 w-fit ">
+        <div className="modal-box max-w-3xl overflow-hidden bg-gray-900 p-0 text-gray-100">
           <img
-            className="w-full"
-            src={img_500 + media.backdrop_path}
-            alt={media.title}
+            className="h-72 w-full object-cover"
+            src={media.backdrop_path ? img_500 + media.backdrop_path : "/Noimg.png"}
+            alt={media.title || media.name}
           />
-          <h3 className="font-bold text-lg mt-3">
-            <span className="mr-4">{media.original_title}</span>
-            <span>{media.first_air_date || media.release_date}</span>
+          <h3 className="mt-4 px-5 text-center text-lg font-bold">
+            <span className="mr-2">{media.original_title || media.title || media.name}</span>
+            <span className="text-sm font-normal">
+              ({media.first_air_date?.slice(0, 4) || media.release_date?.slice(0, 4)})
+            </span>
           </h3>
-          <p className="py-4">{media.overview}</p>
-          <div className="modal-action p-4 flex justify-between">
+          <p className="px-5 py-4 text-sm">{media.overview}</p>
+          {credits?.length > 0 && (
+            <div className="w-full px-5 pb-2">
+              <Carousel credits={credits.slice(0, 10)} />
+            </div>
+          )}
+          <div className="flex items-center justify-center gap-3 px-5 pb-5">
             {trailerItem && (
               <a
                 href={`https://youtube.com/watch?v=${trailerItem.key}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn  border rounded-2xl"
+                className="btn border rounded-2xl"
               >
                 <FaYoutube /> Trailer
               </a>
             )}
-            <form method="dialog" className="">
+            <form method="dialog">
               <button
                 className="btn border rounded-2xl"
                 onClick={() => setIsOpen(false)}

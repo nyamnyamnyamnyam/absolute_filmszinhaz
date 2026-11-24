@@ -84,3 +84,8 @@ export const getTrailer = async(type, id) => {
 	const response = await api.get(`/${type}/${id}/videos`)
 	return response.data.results ?? []
 }
+
+export const GetCreadits = async(type, id) => {
+	const response = await api.get(`/${type}/${id}/credits`)
+	return response.data.cast
+}
