@@ -7,6 +7,8 @@ import Movies from './Pages/Movies.jsx'
 import NotFound from './Pages/NotFound.jsx'
 import SearchMedia from './Pages/SearchMedia.jsx'
 import Tvshows from './Pages/Tvshows.jsx'
+import Actors from './components/Actors.jsx'
+import ActorDetails from './Pages/ActorDetails.jsx'
 
 
 const myrouter = createBrowserRouter([
@@ -17,6 +19,8 @@ const myrouter = createBrowserRouter([
       {path: '/movies', element: <Movies/>},
       {path: '/tv', element: <Tvshows/>},
       {path: '/search', element: <SearchMedia/>},
+      {path: '/actors', element: <Actors/>},
+      {path: '/actors/:id', element: <ActorDetails/>},
       {path: '*', element: <NotFound/>},
     ]
   }

@@ -21,7 +21,7 @@ const MyHeader = () => {
 							<span className="text-red-500">Filmszinház</span>
 						</div>
 						{/* asztali menü */}
-						<div className="hidden min-[690px]:flex gap-8 font-bold items-center">
+						<div className="hidden min-[790px]:flex gap-8 font-bold items-center">
 							<NavLink to={"/"} className={navLinkClass}>
 								Kezdőlap
 							</NavLink>
@@ -34,11 +34,14 @@ const MyHeader = () => {
 							<NavLink to={"/search"} className={navLinkClass}>
 								Keresés
 							</NavLink>
+							<NavLink to={"/actors"} className={navLinkClass}>
+								Szinészek
+							</NavLink>
 						</div>
 						{/* hamburger menü */}
 						<button
 							type="button"
-							className="min-[690px]:hidden text-3xl"
+							className="min-[790px]:hidden text-3xl"
 							aria-label={menuOpen ? "Menü bezárása" : "Menü megnyitása"}
 							aria-expanded={menuOpen}
 							aria-controls="mobile-menu"
@@ -49,7 +52,7 @@ const MyHeader = () => {
 					</div>
 					{/* alsó sor */}
 					{menuOpen && (
-						<div id="mobile-menu" className="flex min-[690px]:hidden flex-col gap-8 font-bold items-center pt-4">
+						<div id="mobile-menu" className="flex min-[790px]:hidden flex-col gap-8 font-bold items-center pt-4">
 							<NavLink to={"/"} className={navLinkClass}>
 								Kezdőlap
 							</NavLink>
@@ -61,6 +64,9 @@ const MyHeader = () => {
 							</NavLink>
 							<NavLink to={"/search"} className={navLinkClass}>
 								Keresés
+							</NavLink>
+							<NavLink to={"/actors"} className={navLinkClass}>
+								Szinészek
 							</NavLink>
 						</div>
 					)}

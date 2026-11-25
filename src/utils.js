@@ -89,3 +89,18 @@ export const GetCreadits = async(type, id) => {
 	const response = await api.get(`/${type}/${id}/credits`)
 	return response.data.cast
 }
+
+export const getActors = async (page = 1) => {
+	const response = await api.get('/person/popular', { params: { page } });
+	return {
+		results: response.data.results,
+		totalPages: response.data.total_pages
+	};
+};
+
+export const getActorDetails = async (id) => {
+	const response = await api.get(`/person/${id}`, {
+		params: { append_to_response: "movie_credits,tv_credits" }
+	});
+	return response.data;
+};

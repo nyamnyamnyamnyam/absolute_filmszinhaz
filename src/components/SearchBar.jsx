@@ -2,7 +2,13 @@ import React from "react";
 
 const SearchBar = ({searchText, setSearchText, handleSearch}) => {
   return (
-    <div className="flex justify-center gap-4 text-gray-200 font-bold p-3">
+    <form
+      className="flex justify-center gap-4 text-gray-200 font-bold p-3"
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleSearch();
+      }}
+    >
       <label className="input">
         <svg
           className="h-[1em] opacity-50"
@@ -28,8 +34,8 @@ const SearchBar = ({searchText, setSearchText, handleSearch}) => {
           onChange={(e) => setSearchText(e.target.value)}
         />
       </label>
-      <button className="btn btn-primary" onClick={handleSearch}>search</button>
-    </div>
+      <button type="submit" className="btn btn-primary">search</button>
+    </form>
   );
 };
 
